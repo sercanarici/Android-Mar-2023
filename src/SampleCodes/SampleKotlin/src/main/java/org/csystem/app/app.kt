@@ -32,15 +32,17 @@ fun runApp() {
 //    println("order: ${order(a,b,c)}")
 //    println("order2: ${order2(a,b,c)}")
 
-    while (true) {
-        print("Bir Sayı Giriniz.")
-        val value = readln().toInt()
+//    while (true) {
+//        print("Bir Sayı Giriniz.")
+//        val value = readln().toInt()
+//
+//        println("$value sayısının basamak sayısı: ${countDigits(value)}")
+//
+//        if (value == 0)
+//            break
+//    }
 
-        println("$value sayısının basamak sayısı: ${countDigits(value)}")
-
-        if (value == 0)
-            break
-    }
+    sumEvenAndOdds()
 
 }
 
@@ -142,15 +144,54 @@ fun sumDigits(value: Int): Int {
 
 fun reversed(value: Int): Int {
 
-    var result =0
+    var result = 0
     var temp = value
 
-    while (temp!=0) {
-        result = result*10 + temp%10
+    while (temp != 0) {
+        result = result * 10 + temp % 10
         temp /= 10
     }
 
-    return  result
+    return result
 }
 
-fun isPalindrom(value: Int) = reversed(value)==value
+fun isPalindrom(value: Int) = reversed(value) == value
+
+fun sumEvenAndOdds() {
+    print("Başlangic Sayisini giriniz:")
+    val a = readln().toInt()
+
+    print("Bitis Sayisini giriniz:")
+    val b = readln().toInt()
+
+    var odds = 0
+    var evens = 0
+
+    for (x in a..b) {
+        if (x % 2 == 0) {
+            evens += x
+        } else {
+            odds += x
+        }
+    }
+
+    println("Tek Sayılar Toplamı:$odds")
+    println("Çift Sayılar Toplamı:$evens")
+}
+
+fun findRootsByWhen(a: Double, b: Double, c: Double): String {
+    val delta = calculateDelta(a, b, c)
+
+    fun calculateRoots(): String {
+        val sqrtDelta = kotlin.math.sqrt(delta)
+        return "x1 = ${(-b + sqrtDelta) / (2 * a)}, x2 = ${(-b - sqrtDelta) / (2 * a)}"
+    }
+
+
+
+    return when {
+        delta > 0 -> calculateRoots()
+        delta == 0.0 -> "x1 = x2 = ${-b / (2 * a)}"
+        else -> "No real root"
+    }
+}
