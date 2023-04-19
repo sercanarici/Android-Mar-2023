@@ -1,4 +1,4 @@
-package org.csystem.app
+package org.csystem.homework
 
 fun order(a: Int, b: Int, c: Int): String {
     val (small, medium, large) = listOf(a, b, c).sorted()

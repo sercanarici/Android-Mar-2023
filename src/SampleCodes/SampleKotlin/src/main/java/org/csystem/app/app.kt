@@ -1,5 +1,7 @@
 package org.csystem.app
 
+import kotlin.random.Random
+
 fun main() = runApp()
 
 fun runApp() {
@@ -42,8 +44,16 @@ fun runApp() {
 //            break
 //    }
 
-    sumEvenAndOdds()
+    //sumEvenAndOdds()
 
+//    val ch1 = 'A'
+//    val ch2 = 'a'
+//
+//    val result = ch1 - ch2
+//
+//    println(result.javaClass.name)
+//    println(result)
+    runCountStringTest()
 }
 
 fun foo() {
@@ -194,4 +204,36 @@ fun findRootsByWhen(a: Double, b: Double, c: Double): String {
         delta == 0.0 -> "x1 = x2 = ${-b / (2 * a)}"
         else -> "No real root"
     }
+}
+
+
+fun runCountStringTest()
+{
+    while (true) {
+        print("Input the first text:")
+        val s1 = readln()
+
+        print("Input the second text:")
+        val s2 = readln()
+
+        val ignoreCase = Random.nextBoolean()
+
+        println(if (ignoreCase) "case insensitive" else "case sensitive")
+        println("Count:${countString(s1, s2, ignoreCase)}")
+    }
+}
+
+fun countString(s1: String, s2: String, ignoreCase: Boolean = false) : Int
+{
+    var idx =-1
+    var count=0
+    while (true) {
+        idx = s1.indexOf(s2, idx+1, ignoreCase)
+
+        if(idx==-1)
+            break
+        ++count
+    }
+
+    return count
 }
