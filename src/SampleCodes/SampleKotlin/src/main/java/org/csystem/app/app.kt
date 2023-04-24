@@ -53,7 +53,10 @@ fun runApp() {
 //
 //    println(result.javaClass.name)
 //    println(result)
-    runCountStringTest()
+    //runCountStringTest()
+    //runChangeCaseTest()
+    //runCapitalizeTest()
+    runPangramTest()
 }
 
 fun foo() {
@@ -237,3 +240,90 @@ fun countString(s1: String, s2: String, ignoreCase: Boolean = false) : Int
 
     return count
 }
+
+fun runChangeCaseTest()
+{
+    while (true) {
+        print("Input text:")
+        val s = readln()
+
+        if (s == "quit")
+            break
+
+        val str = changeCase(s)
+
+        println("($str)")
+    }
+}
+fun changeCase(s: String) : String
+{
+    val sb = StringBuilder(s)
+    for (i in s.indices)
+        sb[i] = when {s[i].isUpperCase() -> s[i].lowercaseChar() else -> s[i].uppercaseChar()}
+
+    return sb.toString()
+}
+
+fun runCapitalizeTest()
+{
+    while (true) {
+        print("Bir yazı giriniz:")
+        val text = readln()
+
+        println(capitalize(text))
+
+        if (text == "elma")
+            break
+    }
+
+    println("Tekrar yapıyor musunuz?")
+}
+
+fun capitalize(s: String) : String
+{
+    return if(s.isNotEmpty())
+        s[0].uppercase() + s.substring(1).lowercase() else ""
+
+}
+
+fun runPangramTest()
+{
+    runIsPangramTRTest()
+    runIsPangramENTest()
+}
+fun runIsPangramTRTest()
+{
+    while (true) {
+        print("Bir yazı giriniz:")
+        val s = readln()
+
+        if ("elma" == s)
+            break
+
+        println(if (isPangramTR(s)) "Pangram" else "Pangram değil")
+    }
+}
+
+fun runIsPangramENTest()
+{
+    while (true) {
+        print("Input a text:")
+        val s = readln()
+
+        if ("quit" == s)
+            break
+        println(if (isPangramEN(s)) "Pangram" else "Not a Pangram")
+    }
+}
+
+fun isPangram(s: String, alphabet: String) : Boolean
+{
+    for (c in alphabet)
+        if(!s.contains(c,true))
+            return false
+
+    return true
+}
+fun isPangramTR(s: String) = isPangram(s, "abcdefghijklmnopqrstuvwxyz")
+
+fun isPangramEN(s: String) = isPangram(s, "abcçdefgğhıijklmnoöprsştuüvyz")
